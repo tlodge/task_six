@@ -24,7 +24,7 @@
         "type": "dbfunction",
         "z": "316d391f.9fe716",
         "name": "",
-        "func": "return {\t\t\t\t\n    type:\"set-bulb-on\",\n    payload: msg.payload.value > 1500 ? \"on\" : \"off\",\n}\n",
+        "func": "return {\t\t\t\t\n    type:\"set-bulb-on\",\n    payload: msg.payload.value.power > 500 ? \"on\" : \"off\",\n}\n",
         "outputs": 1,
         "inputtypedef": "",
         "outputtypedef": "{\n    \"type\": \"object\",\n    \"properties\": {\n        \"type\": {\n            \"type\": \"string\"\n        },\n        \"payload\": {\n            \"type\": \"literal\"\n        }\n    }\n}",
