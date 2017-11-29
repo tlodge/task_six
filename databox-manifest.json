@@ -1,0 +1,49 @@
+{
+    "manifest-version": 1,
+    "name": "tlodge-",
+    "version": "0.1.0",
+    "description": "",
+    "author": "tlodge",
+    "licence": "MIT",
+    "databox-type": "app",
+    "tags": "",
+    "homepage": "https://github.com/tlodge/tlodge-",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/tlodge/tlodge-.git"
+    },
+    "packages": [
+        {
+            "id": "316d391f.9fe716",
+            "name": "new package",
+            "purpose": "",
+            "required": false,
+            "datastores": [
+                "c711baf6.e4cce8",
+                "3eef8e11.0d65e2"
+            ],
+            "benefits": ""
+        }
+    ],
+    "allowed-combinations": [],
+    "datasources": [
+        {
+            "type": "TP-Power-Usage",
+            "required": true,
+            "name": "plugin",
+            "clientid": "c711baf6.e4cce8",
+            "granularities": []
+        },
+        {
+            "type": "set-bulb-on",
+            "required": true,
+            "name": "bulbsout",
+            "clientid": "3eef8e11.0d65e2",
+            "granularities": []
+        }
+    ],
+    "network-permissions": [],
+    "resource-requirements": {},
+    "volumes": [],
+    "export-whitelist": []
+}
