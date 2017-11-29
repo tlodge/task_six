@@ -1,0 +1,76 @@
+[
+    {
+        "id": "316d391f.9fe716",
+        "label": "new package",
+        "type": "tab"
+    },
+    {
+        "id": "c711baf6.e4cce8",
+        "type": "plugin",
+        "z": "316d391f.9fe716",
+        "name": "",
+        "subtype": "TP-Power-Usage",
+        "x": 154.5,
+        "y": 257,
+        "wires": [
+            [
+                "ebff15cc.e9f038",
+                "b8cfeb18.b3bf18"
+            ]
+        ]
+    },
+    {
+        "id": "ebff15cc.e9f038",
+        "type": "dbfunction",
+        "z": "316d391f.9fe716",
+        "name": "",
+        "func": "return {\t\t\t\t\n    type:\"set-bulb-on\",\n    payload: msg.payload.value > 1500 ? \"on\" : \"off\",\n}\n",
+        "outputs": 1,
+        "inputtypedef": "",
+        "outputtypedef": "{\n    \"type\": \"object\",\n    \"properties\": {\n        \"type\": {\n            \"type\": \"string\"\n        },\n        \"payload\": {\n            \"type\": \"literal\"\n        }\n    }\n}",
+        "noerr": 0,
+        "x": 289.5,
+        "y": 255,
+        "wires": [
+            [
+                "3eef8e11.0d65e2",
+                "8700ed8a.03e4a"
+            ]
+        ]
+    },
+    {
+        "id": "3eef8e11.0d65e2",
+        "type": "bulbsout",
+        "z": "316d391f.9fe716",
+        "name": "",
+        "subtype": "set-bulb-on",
+        "value": "",
+        "x": 419.5,
+        "y": 249,
+        "wires": []
+    },
+    {
+        "id": "8700ed8a.03e4a",
+        "type": "debugger",
+        "z": "316d391f.9fe716",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 424,
+        "y": 154,
+        "wires": []
+    },
+    {
+        "id": "b8cfeb18.b3bf18",
+        "type": "debugger",
+        "z": "316d391f.9fe716",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 302.5,
+        "y": 151,
+        "wires": []
+    }
+]
