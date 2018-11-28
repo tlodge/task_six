@@ -5,72 +5,148 @@
         "type": "tab"
     },
     {
-        "id": "c711baf6.e4cce8",
-        "type": "plugin",
+        "id": "18c324ca4687db",
+        "type": "facedetect",
         "z": "316d391f.9fe716",
+        "ptype": {
+            "18c324ca4687db": [
+                {
+                    "type": "identifier",
+                    "ordinal": "secondary",
+                    "description": "images can be used to identify individuals",
+                    "required": [
+                        "payload.image"
+                    ],
+                    "accretion": false,
+                    "status": "inferred"
+                }
+            ]
+        },
         "name": "",
-        "subtype": "TP-Power-Usage",
-        "x": 154.5,
-        "y": 257,
+        "x": 357.5,
+        "y": 290,
         "wires": [
             [
-                "ebff15cc.e9f038",
-                "b8cfeb18.b3bf18"
+                "5f769828183bf8",
+                "7caa4306e4d8bc"
             ]
         ]
     },
     {
-        "id": "ebff15cc.e9f038",
-        "type": "dbfunction",
+        "id": "4fb1a00584a5c",
+        "type": "browserwebcam",
         "z": "316d391f.9fe716",
+        "ptype": {
+            "4fb1a00584a5c": [
+                {
+                    "type": "identifier",
+                    "ordinal": "secondary",
+                    "description": "images can be used to identify individuals",
+                    "required": [
+                        "payload.image"
+                    ],
+                    "accretion": false,
+                    "status": "inferrable"
+                },
+                {
+                    "type": "personal",
+                    "subtype": "physical",
+                    "ordinal": "secondary",
+                    "status": "inferable",
+                    "description": "images can be used to infer your age",
+                    "required": [
+                        "payload.image"
+                    ],
+                    "accuracy": 0.8,
+                    "conditions": [
+                        {
+                            "type": "granularity",
+                            "granularity": {
+                                "threshold": 2,
+                                "unit": "megapixel"
+                            }
+                        }
+                    ],
+                    "accretion": false
+                }
+            ]
+        },
         "name": "",
-        "func": "return {\t\t\t\t\n    type:\"set-bulb-on\",\n    payload: msg.payload.value.power > 500 ? \"on\" : \"off\",\n}\n",
-        "outputs": 1,
-        "inputtypedef": "",
-        "outputtypedef": "{\n    \"type\": \"object\",\n    \"properties\": {\n        \"type\": {\n            \"type\": \"string\"\n        },\n        \"payload\": {\n            \"type\": \"literal\"\n        }\n    }\n}",
-        "noerr": 0,
-        "x": 289.5,
-        "y": 255,
+        "subtype": "browserWebcamImage",
+        "x": 227.5,
+        "y": 290,
         "wires": [
             [
-                "3eef8e11.0d65e2",
-                "8700ed8a.03e4a"
+                "18c324ca4687db"
             ]
         ]
     },
     {
-        "id": "3eef8e11.0d65e2",
+        "id": "5f769828183bf8",
+        "type": "rules",
+        "z": "316d391f.9fe716",
+        "name": "",
+        "rules": [],
+        "x": 490,
+        "y": 364,
+        "wires": [
+            [
+                "98d74eee73ae1"
+            ]
+        ]
+    },
+    {
+        "id": "98d74eee73ae1",
         "type": "bulbsout",
         "z": "316d391f.9fe716",
         "name": "",
         "subtype": "set-bulb-on",
         "value": "",
-        "x": 419.5,
-        "y": 249,
+        "x": 595.5,
+        "y": 364,
         "wires": []
     },
     {
-        "id": "8700ed8a.03e4a",
-        "type": "debugger",
+        "id": "7caa4306e4d8bc",
+        "type": "webify",
         "z": "316d391f.9fe716",
+        "ptype": {
+            "7caa4306e4d8bc": [
+                {
+                    "type": "identifier",
+                    "ordinal": "secondary",
+                    "description": "images can be used to identify individuals",
+                    "required": [
+                        "payload.values"
+                    ],
+                    "accretion": false,
+                    "status": "inferred"
+                }
+            ]
+        },
         "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "false",
-        "x": 424,
-        "y": 154,
-        "wires": []
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "This is the payload: {{payload}} !",
+        "x": 482.5,
+        "y": 188,
+        "wires": [
+            [
+                "c957ed3fae86f"
+            ]
+        ]
     },
     {
-        "id": "b8cfeb18.b3bf18",
-        "type": "debugger",
+        "id": "c957ed3fae86f",
+        "type": "app",
         "z": "316d391f.9fe716",
         "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "false",
-        "x": 302.5,
-        "y": 151,
+        "appId": "webapp",
+        "layout": null,
+        "x": 591,
+        "y": 188,
         "wires": []
     }
 ]
