@@ -5,46 +5,182 @@
         "type": "tab"
     },
     {
-        "id": "7caa4306e4d8bc",
-        "type": "webify",
+        "id": "f48c105414622",
+        "type": "bulbsin",
         "z": "316d391f.9fe716",
         "ptype": {
-            "7caa4306e4d8bc": [
+            "f48c105414622": [
                 {
-                    "type": "identifier",
+                    "type": "personal",
+                    "subtype": "behaviour",
                     "ordinal": "secondary",
-                    "description": "images can be used to identify individuals",
+                    "description": "presence data can provide an indicator of routine and room occupancy",
                     "required": [
-                        "payload.values"
+                        "payload.value"
                     ],
-                    "accretion": false,
-                    "status": "inferred"
+                    "conditions": [
+                        {
+                            "accuracy": 0.9,
+                            "granularity": {
+                                "threshold": -1,
+                                "unit": "none"
+                            }
+                        }
+                    ],
+                    "accretion": true
+                },
+                {
+                    "type": "personal",
+                    "subtype": "location",
+                    "ordinal": "secondary",
+                    "required": [
+                        "payload.value"
+                    ],
+                    "description": "presence data can provide partial location information",
+                    "conditions": [
+                        {
+                            "granularity": {
+                                "threshold": -1,
+                                "unit": "none"
+                            }
+                        }
+                    ],
+                    "accretion": true
                 }
             ]
         },
         "name": "",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "This is the payload: {{payload}} !",
-        "x": 482.5,
-        "y": 188,
+        "subtype": "hue-ZLLPresence",
+        "x": 233,
+        "y": 328,
         "wires": [
             [
-                "c957ed3fae86f"
+                "39d7050aba071a"
             ]
         ]
     },
     {
-        "id": "c957ed3fae86f",
-        "type": "app",
+        "id": "39d7050aba071a",
+        "type": "rules",
         "z": "316d391f.9fe716",
         "name": "",
-        "appId": "webapp",
-        "layout": null,
-        "x": 591,
-        "y": 188,
+        "rules": [
+            {
+                "input": "f48c105414622",
+                "attribute": "payload.value.presence",
+                "operator": "true",
+                "operand": "",
+                "outputMessage": {
+                    "type": "set-bulb-on",
+                    "payload": "on"
+                },
+                "ruleId": 0,
+                "outputType": "c58c7d6bdf898",
+                "outputSchema": {
+                    "type": "object",
+                    "description": "the container object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "description": "one of either 'set-bulb-on', 'set-bulb-hue', 'set-bulb-brightness'",
+                            "enum": [
+                                "set-bulb-on",
+                                "set-bulb-hue",
+                                "set-bulb-brightness"
+                            ]
+                        },
+                        "payload": {
+                            "type": "oneOf",
+                            "selector": "type",
+                            "description": "'type' dependent",
+                            "oneOf": [
+                                {
+                                    "key": "type",
+                                    "value": "set-bulb-on",
+                                    "type": "string",
+                                    "description": "\"on\" or \"off\""
+                                },
+                                {
+                                    "key": "type",
+                                    "value": "set-bulb-hue",
+                                    "type": "number",
+                                    "description": "a hue value (0-360)"
+                                },
+                                {
+                                    "key": "type",
+                                    "value": "set-bulb-brightness",
+                                    "type": "number",
+                                    "description": "a brightness value (0-255)"
+                                }
+                            ]
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "payload"
+                    ],
+                    "id": "c58c7d6bdf898"
+                }
+            },
+            {
+                "input": "f48c105414622",
+                "attribute": "payload.value.presence",
+                "operator": "true",
+                "operand": "",
+                "outputMessage": {
+                    "payload": "off"
+                },
+                "ruleId": 1,
+                "outputType": "754453f1c43a4c",
+                "outputSchema": {
+                    "type": "object",
+                    "description": "container object",
+                    "properties": {
+                        "payload": {
+                            "type": "string",
+                            "description": "on or off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "payload"
+                    ],
+                    "id": "754453f1c43a4c"
+                }
+            }
+        ],
+        "x": 382,
+        "y": 343,
+        "wires": [
+            [
+                "754453f1c43a4c",
+                "c58c7d6bdf898"
+            ]
+        ]
+    },
+    {
+        "id": "c58c7d6bdf898",
+        "type": "bulbsout",
+        "z": "316d391f.9fe716",
+        "name": "",
+        "subtype": "set-bulb-on",
+        "value": "",
+        "x": 517.5,
+        "y": 279,
+        "wires": []
+    },
+    {
+        "id": "754453f1c43a4c",
+        "type": "plugout",
+        "z": "316d391f.9fe716",
+        "name": "",
+        "subtype": "TP-SetPowerState",
+        "value": "on",
+        "x": 521.5,
+        "y": 406,
         "wires": []
     }
 ]
