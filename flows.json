@@ -51,11 +51,12 @@
         },
         "name": "",
         "subtype": "hue-ZLLPresence",
-        "x": 199,
-        "y": 347,
+        "x": 191,
+        "y": 429,
         "wires": [
             [
-                "39d7050aba071a"
+                "39d7050aba071a",
+                "c9cb0136d2ac6"
             ]
         ]
     },
@@ -125,35 +126,6 @@
             {
                 "input": "f48c105414622",
                 "attribute": "payload.value.presence",
-                "operator": "true",
-                "operand": "",
-                "outputMessage": {
-                    "payload": "off"
-                },
-                "ruleId": 1,
-                "outputType": "754453f1c43a4c",
-                "outputSchema": {
-                    "type": "object",
-                    "description": "container object",
-                    "properties": {
-                        "payload": {
-                            "type": "string",
-                            "description": "on or off",
-                            "enum": [
-                                "on",
-                                "off"
-                            ]
-                        }
-                    },
-                    "required": [
-                        "payload"
-                    ],
-                    "id": "754453f1c43a4c"
-                }
-            },
-            {
-                "input": "f48c105414622",
-                "attribute": "payload.value.presence",
                 "operator": "false",
                 "operand": "",
                 "outputMessage": {
@@ -207,17 +179,54 @@
                     ],
                     "id": "c58c7d6bdf898"
                 }
-            },
+            }
+        ],
+        "x": 389,
+        "y": 371,
+        "wires": [
+            [
+                "c58c7d6bdf898"
+            ]
+        ]
+    },
+    {
+        "id": "c58c7d6bdf898",
+        "type": "bulbsout",
+        "z": "316d391f.9fe716",
+        "name": "",
+        "subtype": "set-bulb-on",
+        "value": "",
+        "x": 518,
+        "y": 371,
+        "wires": []
+    },
+    {
+        "id": "74da68f0a85408",
+        "type": "plugout",
+        "z": "316d391f.9fe716",
+        "name": "",
+        "subtype": "TP-SetPowerState",
+        "value": "on",
+        "x": 518.5,
+        "y": 459,
+        "wires": []
+    },
+    {
+        "id": "c9cb0136d2ac6",
+        "type": "rules",
+        "z": "316d391f.9fe716",
+        "name": "",
+        "rules": [
             {
                 "input": "f48c105414622",
                 "attribute": "payload.value.presence",
-                "operator": "false",
+                "operator": "true",
                 "operand": "",
                 "outputMessage": {
-                    "payload": "on"
+                    "payload": "off"
                 },
-                "ruleId": 3,
-                "outputType": "754453f1c43a4c",
+                "ruleId": 0,
+                "outputType": "74da68f0a85408",
                 "outputSchema": {
                     "type": "object",
                     "description": "container object",
@@ -234,39 +243,45 @@
                     "required": [
                         "payload"
                     ],
-                    "id": "754453f1c43a4c"
+                    "id": "74da68f0a85408"
+                }
+            },
+            {
+                "input": "f48c105414622",
+                "attribute": "payload.value.presence",
+                "operator": "false",
+                "operand": "",
+                "outputMessage": {
+                    "payload": "on"
+                },
+                "ruleId": 1,
+                "outputType": "74da68f0a85408",
+                "outputSchema": {
+                    "type": "object",
+                    "description": "container object",
+                    "properties": {
+                        "payload": {
+                            "type": "string",
+                            "description": "on or off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "payload"
+                    ],
+                    "id": "74da68f0a85408"
                 }
             }
         ],
-        "x": 386,
-        "y": 358,
+        "x": 395,
+        "y": 463,
         "wires": [
             [
-                "754453f1c43a4c",
-                "c58c7d6bdf898"
+                "74da68f0a85408"
             ]
         ]
-    },
-    {
-        "id": "c58c7d6bdf898",
-        "type": "bulbsout",
-        "z": "316d391f.9fe716",
-        "name": "",
-        "subtype": "set-bulb-on",
-        "value": "",
-        "x": 517.5,
-        "y": 279,
-        "wires": []
-    },
-    {
-        "id": "754453f1c43a4c",
-        "type": "plugout",
-        "z": "316d391f.9fe716",
-        "name": "",
-        "subtype": "TP-SetPowerState",
-        "value": "on",
-        "x": 521.5,
-        "y": 406,
-        "wires": []
     }
 ]
