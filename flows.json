@@ -51,8 +51,8 @@
         },
         "name": "",
         "subtype": "hue-ZLLPresence",
-        "x": 233,
-        "y": 328,
+        "x": 199,
+        "y": 347,
         "wires": [
             [
                 "39d7050aba071a"
@@ -150,6 +150,94 @@
                     ],
                     "id": "754453f1c43a4c"
                 }
+            },
+            {
+                "input": "f48c105414622",
+                "attribute": "payload.value.presence",
+                "operator": "true",
+                "operand": "",
+                "outputMessage": {
+                    "type": "set-bulb-on",
+                    "payload": "off"
+                },
+                "ruleId": 2,
+                "outputType": "c58c7d6bdf898",
+                "outputSchema": {
+                    "type": "object",
+                    "description": "the container object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "description": "one of either 'set-bulb-on', 'set-bulb-hue', 'set-bulb-brightness'",
+                            "enum": [
+                                "set-bulb-on",
+                                "set-bulb-hue",
+                                "set-bulb-brightness"
+                            ]
+                        },
+                        "payload": {
+                            "type": "oneOf",
+                            "selector": "type",
+                            "description": "'type' dependent",
+                            "oneOf": [
+                                {
+                                    "key": "type",
+                                    "value": "set-bulb-on",
+                                    "type": "string",
+                                    "description": "\"on\" or \"off\""
+                                },
+                                {
+                                    "key": "type",
+                                    "value": "set-bulb-hue",
+                                    "type": "number",
+                                    "description": "a hue value (0-360)"
+                                },
+                                {
+                                    "key": "type",
+                                    "value": "set-bulb-brightness",
+                                    "type": "number",
+                                    "description": "a brightness value (0-255)"
+                                }
+                            ]
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "payload"
+                    ],
+                    "id": "c58c7d6bdf898"
+                },
+                "delay": "5"
+            },
+            {
+                "input": "f48c105414622",
+                "attribute": "payload.value.presence",
+                "operator": "true",
+                "operand": "",
+                "outputMessage": {
+                    "payload": "on"
+                },
+                "ruleId": 3,
+                "outputType": "754453f1c43a4c",
+                "outputSchema": {
+                    "type": "object",
+                    "description": "container object",
+                    "properties": {
+                        "payload": {
+                            "type": "string",
+                            "description": "on or off",
+                            "enum": [
+                                "on",
+                                "off"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "payload"
+                    ],
+                    "id": "754453f1c43a4c"
+                },
+                "delay": "5"
             }
         ],
         "x": 382,
