@@ -50,13 +50,6 @@
             "name": "plugout",
             "clientid": "754453f1c43a4c",
             "granularities": []
-        },
-        {
-            "type": "personalLoggerActuator",
-            "required": false,
-            "name": "personalLoggerActuator",
-            "clientid": "personalLoggerActuator",
-            "granularites": []
         }
     ],
     "network-permissions": [],
