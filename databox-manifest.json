@@ -19,8 +19,9 @@
             "purpose": "",
             "required": false,
             "datastores": [
-                "4fb1a00584a5c",
-                "98d74eee73ae1"
+                "f48c105414622",
+                "c58c7d6bdf898",
+                "754453f1c43a4c"
             ],
             "benefits": ""
         }
@@ -28,17 +29,24 @@
     "allowed-combinations": [],
     "datasources": [
         {
-            "type": "browserWebcamImage",
+            "type": "hue-ZLLPresence",
             "required": true,
-            "name": "browserwebcam",
-            "clientid": "4fb1a00584a5c",
+            "name": "bulbsin",
+            "clientid": "f48c105414622",
             "granularities": []
         },
         {
             "type": "set-bulb-on",
             "required": true,
             "name": "bulbsout",
-            "clientid": "98d74eee73ae1",
+            "clientid": "c58c7d6bdf898",
+            "granularities": []
+        },
+        {
+            "type": "TP-SetPowerState",
+            "required": true,
+            "name": "plugout",
+            "clientid": "754453f1c43a4c",
             "granularities": []
         }
     ],
