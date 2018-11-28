@@ -1,4 +1,4 @@
-FROM tlodge/databox-sdk-red:latest
+FROM tlodge/databox-red:latest
 ADD flows.json /data/flows.json
 LABEL databox.type="app"
 LABEL databox.manifestURL="none/tlodge-/databox-manifest.json"
